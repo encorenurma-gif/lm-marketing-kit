@@ -186,12 +186,12 @@ tailwind.config = {
         <span style="display:none" class="text-xl font-black italic tracking-tighter text-[#AAEE00] font-headline uppercase">LM MARKETING KIT</span>
     </a>
     <nav class="hidden md:flex gap-8 font-headline uppercase tracking-tighter font-semibold">
-        <a class="text-white/70 hover:bg-[#AAEE00] hover:text-black transition-colors duration-150 px-2 py-1" href="#solutions">FOR WHOM</a>
-        <a class="text-white/70 hover:bg-[#AAEE00] hover:text-black transition-colors duration-150 px-2 py-1" href="#program">PROGRAM</a>
-        <a class="text-white/70 hover:bg-[#AAEE00] hover:text-black transition-colors duration-150 px-2 py-1" href="#pricing">PRICING</a>
-        <a class="text-white/70 hover:bg-[#AAEE00] hover:text-black transition-colors duration-150 px-2 py-1" href="#reviews">REVIEWS</a>
+        <a class="text-white/70 hover:bg-[#AAEE00] hover:text-black transition-colors duration-150 px-2 py-1" href="#solutions">ДЛЯ КОГО</a>
+        <a class="text-white/70 hover:bg-[#AAEE00] hover:text-black transition-colors duration-150 px-2 py-1" href="#program">ПРОГРАММА</a>
+        <a class="text-white/70 hover:bg-[#AAEE00] hover:text-black transition-colors duration-150 px-2 py-1" href="#pricing">ЦЕНА</a>
+        <a class="text-white/70 hover:bg-[#AAEE00] hover:text-black transition-colors duration-150 px-2 py-1" href="#reviews">ОТЗЫВЫ</a>
         <a class="text-white/70 hover:bg-[#AAEE00] hover:text-black transition-colors duration-150 px-2 py-1" href="#faq">FAQ</a>
-        <a class="text-white/70 hover:bg-[#AAEE00] hover:text-black transition-colors duration-150 px-2 py-1" href="#authors">AUTHORS</a>
+        <a class="text-white/70 hover:bg-[#AAEE00] hover:text-black transition-colors duration-150 px-2 py-1" href="#authors">АВТОРЫ</a>
     </nav>
     <div class="flex items-center gap-4">
         <button data-open-modal type="button" class="font-headline uppercase tracking-tighter font-semibold text-[#AAEE00] hover:bg-[#AAEE00] hover:text-black transition-colors duration-150 px-4 py-2 border-2 border-[#AAEE00] hidden md:block">ОСТАВИТЬ ЗАЯВКУ</button>
@@ -201,12 +201,12 @@ tailwind.config = {
 
 <!-- Mobile menu -->
 <div id="mobile-menu" class="hidden fixed top-[64px] inset-x-0 z-40 bg-[#131313] border-b border-white/10 flex-col gap-1 px-6 py-4 md:hidden">
-    <a class="block py-3 border-b border-white/5 font-headline uppercase tracking-tighter font-semibold text-on-surface" href="#solutions">FOR WHOM</a>
-    <a class="block py-3 border-b border-white/5 font-headline uppercase tracking-tighter font-semibold text-on-surface" href="#program">PROGRAM</a>
-    <a class="block py-3 border-b border-white/5 font-headline uppercase tracking-tighter font-semibold text-on-surface" href="#pricing">PRICING</a>
-    <a class="block py-3 border-b border-white/5 font-headline uppercase tracking-tighter font-semibold text-on-surface" href="#reviews">REVIEWS</a>
+    <a class="block py-3 border-b border-white/5 font-headline uppercase tracking-tighter font-semibold text-on-surface" href="#solutions">ДЛЯ КОГО</a>
+    <a class="block py-3 border-b border-white/5 font-headline uppercase tracking-tighter font-semibold text-on-surface" href="#program">ПРОГРАММА</a>
+    <a class="block py-3 border-b border-white/5 font-headline uppercase tracking-tighter font-semibold text-on-surface" href="#pricing">ЦЕНА</a>
+    <a class="block py-3 border-b border-white/5 font-headline uppercase tracking-tighter font-semibold text-on-surface" href="#reviews">ОТЗЫВЫ</a>
     <a class="block py-3 border-b border-white/5 font-headline uppercase tracking-tighter font-semibold text-on-surface" href="#faq">FAQ</a>
-    <a class="block py-3 border-b border-white/5 font-headline uppercase tracking-tighter font-semibold text-on-surface" href="#authors">AUTHORS</a>
+    <a class="block py-3 border-b border-white/5 font-headline uppercase tracking-tighter font-semibold text-on-surface" href="#authors">АВТОРЫ</a>
     <button data-open-modal type="button" class="mt-2 clip-button bg-primary-container text-on-primary font-headline uppercase font-bold px-5 py-4 text-left">ОСТАВИТЬ ЗАЯВКУ</button>
 </div>
 
@@ -472,8 +472,14 @@ tailwind.config = {
             <div class="inline-flex items-center justify-center w-24 h-24 mb-8 bg-surface-container-high rotate-12">
                 <span class="material-symbols-outlined text-6xl text-primary-container">ads_click</span>
             </div>
-            <h2 class="font-headline font-extrabold text-7xl md:text-9xl uppercase tracking-tightest text-on-background mb-4">39 990 ₸</h2>
-            <div class="text-primary-container font-headline font-bold text-2xl uppercase tracking-widest mb-12">Разовый доступ / Навсегда</div>
+            <!-- Sale badge -->
+            <div class="flex flex-wrap items-center gap-4 mb-3">
+                <span class="bg-[#93000a] text-[#ffdad6] font-headline font-bold text-sm uppercase tracking-widest px-3 py-1.5 animate-pulse">−43% СКИДКА</span>
+                <span class="font-headline font-semibold text-2xl text-on-surface-variant line-through decoration-[#ffb4ab] decoration-2">69 990 ₸</span>
+            </div>
+            <h2 class="font-headline font-extrabold text-7xl md:text-9xl uppercase tracking-tightest text-primary-container mb-1">39 990 ₸</h2>
+            <div class="text-on-surface-variant font-headline font-semibold text-sm uppercase tracking-widest mb-2">Вы экономите <span class="text-primary-container">30 000 ₸</span></div>
+            <div class="text-primary-container font-headline font-bold text-xl uppercase tracking-widest mb-12">Разовый доступ · Навсегда</div>
             <div class="bg-surface-container-lowest p-8 border border-outline-variant/30 mb-12 text-left">
                 <ul class="space-y-4 text-on-surface-variant font-body text-lg">
                     <li class="flex gap-4 items-center border-b border-surface-container-highest pb-4">
@@ -710,12 +716,12 @@ tailwind.config = {
 <footer class="w-full py-10 px-6 md:px-8 flex flex-col md:flex-row justify-between items-center gap-5 bg-[#131313] border-t border-neutral-800">
     <img src="%D0%BB%D0%BE%D0%B3%D0%BE/%D0%9B%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF%20%D0%9B%D0%9C%20%D0%B2%20%D0%B1%D0%B5%D0%BB%D0%BE%D0%BC.png" alt="LM Marketing Kit" class="h-8 w-auto" onerror="this.style.display='none'"/>
     <nav class="flex flex-wrap justify-center gap-6 font-headline text-xs tracking-widest uppercase">
-        <a class="text-neutral-500 hover:text-[#AAEE00] transition-all duration-300" href="#solutions">FOR WHOM</a>
-        <a class="text-neutral-500 hover:text-[#AAEE00] transition-all duration-300" href="#program">PROGRAM</a>
-        <a class="text-neutral-500 hover:text-[#AAEE00] transition-all duration-300" href="#pricing">PRICING</a>
-        <a class="text-neutral-500 hover:text-[#AAEE00] transition-all duration-300" href="#reviews">REVIEWS</a>
+        <a class="text-neutral-500 hover:text-[#AAEE00] transition-all duration-300" href="#solutions">ДЛЯ КОГО</a>
+        <a class="text-neutral-500 hover:text-[#AAEE00] transition-all duration-300" href="#program">ПРОГРАММА</a>
+        <a class="text-neutral-500 hover:text-[#AAEE00] transition-all duration-300" href="#pricing">ЦЕНА</a>
+        <a class="text-neutral-500 hover:text-[#AAEE00] transition-all duration-300" href="#reviews">ОТЗЫВЫ</a>
         <a class="text-neutral-500 hover:text-[#AAEE00] transition-all duration-300" href="#faq">FAQ</a>
-        <a class="text-neutral-500 hover:text-[#AAEE00] transition-all duration-300" href="#authors">AUTHORS</a>
+        <a class="text-neutral-500 hover:text-[#AAEE00] transition-all duration-300" href="#authors">АВТОРЫ</a>
     </nav>
     <div class="font-headline text-xs tracking-widest uppercase text-neutral-500">© 2026 LM MARKETING KIT. ALL SYSTEMS GO.</div>
 </footer>
