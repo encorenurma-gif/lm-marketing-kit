@@ -853,27 +853,23 @@ async function submitForm(form) {
     btn.disabled = true;
     status.textContent = "Отправляем...";
     status.className = "text-sm font-medium text-on-surface-variant min-h-5";
-    try {
-        const params = new URLSearchParams();
-        params.append("name", name);
-        params.append("phone", phone);
-        params.append("source", source);
-        params.append("timestamp", new Date().toISOString());
-        params.append("page", location.href);
-        // GET request via Image — works reliably with Google Apps Script (bypasses no-cors redirect issues)
-        new Image().src = APPS_SCRIPT_URL + "?" + params.toString();
-        form.reset();
-        // Close lead modal if open
-        const leadModal = document.getElementById("lead-modal");
-        if (leadModal) { leadModal.dataset.open = "false"; document.body.style.overflow = ""; }
-        // Show thank-you modal
-        const tyModal = document.getElementById("thankyou-modal");
-        if (tyModal) { tyModal.dataset.open = "true"; document.body.style.overflow = "hidden"; }
-    } catch {
-        status.textContent = "Ошибка отправки. Попробуйте снова.";
-        status.className = "text-sm font-medium text-[#ffb4ab] min-h-5";
-        btn.disabled = false;
-    }
+    const params = new URLSearchParams();
+    params.append("name", name);
+    params.append("phone", phone);
+    params.append("source", source);
+    params.append("timestamp", new Date().toISOString());
+    params.append("page", location.href);
+    // Fire-and-forget GET request — Google Apps Script handles via doGet
+    fetch(APPS_SCRIPT_URL + "?" + params.toString(), { method: "GET", mode: "no-cors" })
+        .catch(() => {});
+    form.reset();
+    btn.disabled = false;
+    // Close lead modal if open
+    const leadModal = document.getElementById("lead-modal");
+    if (leadModal) { leadModal.dataset.open = "false"; document.body.style.overflow = ""; }
+    // Show thank-you modal
+    const tyModal = document.getElementById("thankyou-modal");
+    if (tyModal) { tyModal.dataset.open = "true"; document.body.style.overflow = "hidden"; }
 }
 document.querySelectorAll("[data-lead-form]").forEach(form => {
     form.addEventListener("submit", e => { e.preventDefault(); submitForm(form); });
