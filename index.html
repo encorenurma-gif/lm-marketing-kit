@@ -860,13 +860,8 @@ async function submitForm(form) {
         params.append("source", source);
         params.append("timestamp", new Date().toISOString());
         params.append("page", location.href);
-        fetch(APPS_SCRIPT_URL, {
-            method: "POST",
-            mode: "no-cors",
-            redirect: "follow",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: params.toString()
-        }).catch(() => {});
+        // GET request via Image — works reliably with Google Apps Script (bypasses no-cors redirect issues)
+        new Image().src = APPS_SCRIPT_URL + "?" + params.toString();
         form.reset();
         // Close lead modal if open
         const leadModal = document.getElementById("lead-modal");
