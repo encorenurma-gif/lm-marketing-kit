@@ -854,13 +854,19 @@ async function submitForm(form) {
     status.textContent = "Отправляем...";
     status.className = "text-sm font-medium text-on-surface-variant min-h-5";
     try {
-        const fd = new FormData();
-        fd.append("name", name);
-        fd.append("phone", phone);
-        fd.append("source", source);
-        fd.append("timestamp", new Date().toISOString());
-        fd.append("page", location.href);
-        fetch(APPS_SCRIPT_URL, { method: "POST", mode: "no-cors", body: fd }).catch(() => {});
+        const params = new URLSearchParams();
+        params.append("name", name);
+        params.append("phone", phone);
+        params.append("source", source);
+        params.append("timestamp", new Date().toISOString());
+        params.append("page", location.href);
+        fetch(APPS_SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            redirect: "follow",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: params.toString()
+        }).catch(() => {});
         form.reset();
         // Close lead modal if open
         const leadModal = document.getElementById("lead-modal");
