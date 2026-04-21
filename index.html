@@ -676,7 +676,7 @@ tailwind.config = {
 
 <script>
 // Вставьте URL Google Apps Script после создания Web App:
-const APPS_SCRIPT_URL = "PASTE_GOOGLE_APPS_SCRIPT_URL_HERE";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzPmDIFzdJM4R4faItDZofS_aTUgMK7HMROQm0dis_QScdazPPJ3ihkrucQWKwxmS7n3g/exec";
 
 // Mobile menu
 const menuBtn = document.getElementById("menu-btn");
@@ -745,19 +745,18 @@ async function submitForm(form) {
     status.textContent = "Отправляем...";
     status.className = "text-sm font-medium text-on-surface-variant min-h-5";
     try {
-        await fetch(APPS_SCRIPT_URL, {
-            method: "POST", mode: "cors",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name, phone, source, timestamp: new Date().toISOString(), page: location.href })
-        });
+        const fd = new FormData();
+        fd.append("name", name);
+        fd.append("phone", phone);
+        fd.append("source", source);
+        fd.append("timestamp", new Date().toISOString());
+        fd.append("page", location.href);
+        await fetch(APPS_SCRIPT_URL, { method: "POST", mode: "no-cors", body: fd });
         form.reset();
-        status.textContent = "Заявка отправлена. Менеджер свяжется с вами.";
-        status.className = "text-sm font-medium text-primary-container min-h-5";
-        if (modal.dataset.open === "true") setTimeout(closeModal, 1200);
+        window.location.href = "https://lm-marketing-kit.courstore.com/ru/courses/777027";
     } catch {
         status.textContent = "Ошибка отправки. Попробуйте снова.";
         status.className = "text-sm font-medium text-[#ffb4ab] min-h-5";
-    } finally {
         btn.disabled = false;
     }
 }
