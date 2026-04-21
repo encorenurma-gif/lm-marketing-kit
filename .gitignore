@@ -2,6 +2,10 @@
 brandbook/
 stitch/
 
+# Photos folder (binary assets tracked separately)
+# Comment out below line if you want photos in repo
+# фотки Арай и Батыр/
+
 # Environment variables
 .env
 .env.local
