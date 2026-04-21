@@ -759,6 +759,21 @@ tailwind.config = {
     </div>
 </div>
 
+<!-- THANK YOU MODAL -->
+<div id="thankyou-modal" class="lead-modal fixed inset-0 z-[70] flex items-center justify-center bg-black/80 px-4 py-6" data-open="false">
+    <div class="lead-modal-panel relative w-full max-w-md bg-surface-container-low border border-outline-variant/20 p-8 md:p-10 text-center">
+        <div class="w-14 h-14 flex items-center justify-center border border-primary-container/40 mx-auto mb-6">
+            <span class="material-symbols-outlined text-primary-container text-3xl">check</span>
+        </div>
+        <p class="font-label text-xs uppercase tracking-widest text-primary-container mb-3">Заявка принята</p>
+        <h2 class="font-headline font-extrabold text-2xl md:text-3xl uppercase tracking-tighter text-on-background mb-4">Спасибо, что оставили заявку!</h2>
+        <p class="font-body text-sm text-on-surface-variant mb-8">Мы скоро свяжемся с вами и ответим на все вопросы.</p>
+        <a href="https://lm-marketing-kit.courstore.com/ru/courses/777027" class="clip-button inline-block bg-primary-container text-on-primary font-headline font-semibold text-base px-8 py-4 uppercase hover:bg-primary-fixed transition-all">
+            Перейти на страницу курса
+        </a>
+    </div>
+</div>
+
 <script>
 // Вставьте URL Google Apps Script после создания Web App:
 const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzPmDIFzdJM4R4faItDZofS_aTUgMK7HMROQm0dis_QScdazPPJ3ihkrucQWKwxmS7n3g/exec";
@@ -845,9 +860,14 @@ async function submitForm(form) {
         fd.append("source", source);
         fd.append("timestamp", new Date().toISOString());
         fd.append("page", location.href);
-        await fetch(APPS_SCRIPT_URL, { method: "POST", mode: "no-cors", body: fd });
+        fetch(APPS_SCRIPT_URL, { method: "POST", mode: "no-cors", body: fd }).catch(() => {});
         form.reset();
-        window.location.href = "https://lm-marketing-kit.courstore.com/ru/courses/777027";
+        // Close lead modal if open
+        const leadModal = document.getElementById("lead-modal");
+        if (leadModal) { leadModal.dataset.open = "false"; document.body.style.overflow = ""; }
+        // Show thank-you modal
+        const tyModal = document.getElementById("thankyou-modal");
+        if (tyModal) { tyModal.dataset.open = "true"; document.body.style.overflow = "hidden"; }
     } catch {
         status.textContent = "Ошибка отправки. Попробуйте снова.";
         status.className = "text-sm font-medium text-[#ffb4ab] min-h-5";
