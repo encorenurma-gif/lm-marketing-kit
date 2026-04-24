@@ -865,8 +865,8 @@ async function submitForm(form) {
     params.append("source", source);
     params.append("timestamp", new Date().toISOString());
     params.append("page", location.href);
-    // Fire-and-forget GET request — Google Apps Script handles via doGet
-    fetch(APPS_SCRIPT_URL + "?" + params.toString(), { method: "GET", mode: "no-cors" })
+    // Send GET request and wait before showing thank-you
+    await fetch(APPS_SCRIPT_URL + "?" + params.toString(), { method: "GET", mode: "no-cors" })
         .catch(() => {});
     form.reset();
     btn.disabled = false;
