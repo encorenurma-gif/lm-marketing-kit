@@ -865,9 +865,11 @@ async function submitForm(form) {
     params.append("source", source);
     params.append("timestamp", new Date().toISOString());
     params.append("page", location.href);
-    // Send GET request and wait before showing thank-you
-    await fetch(APPS_SCRIPT_URL + "?" + params.toString(), { method: "GET", mode: "no-cors" })
+    // Fire-and-forget — no-cors responses are opaque, can't await meaningfully
+    fetch(APPS_SCRIPT_URL + "?" + params.toString(), { method: "GET", mode: "no-cors" })
         .catch(() => {});
+    // Brief visual delay so the user sees "Отправляем..."
+    await new Promise(r => setTimeout(r, 900));
     form.reset();
     btn.disabled = false;
     // Close lead modal if open
