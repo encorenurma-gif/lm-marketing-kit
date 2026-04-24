@@ -863,13 +863,21 @@ async function submitForm(form) {
     params.append("name", name);
     params.append("phone", phone);
     params.append("source", source);
-    params.append("timestamp", new Date().toISOString());
     params.append("page", location.href);
-    // Fire-and-forget — no-cors responses are opaque, can't await meaningfully
-    fetch(APPS_SCRIPT_URL + "?" + params.toString(), { method: "GET", mode: "no-cors" })
-        .catch(() => {});
-    // Brief visual delay so the user sees "Отправляем..."
-    await new Promise(r => setTimeout(r, 900));
+    try {
+        const res = await fetch(APPS_SCRIPT_URL + "?" + params.toString());
+        const data = await res.json();
+        if (data.result !== "success") {
+            console.error("Apps Script вернул:", data);
+            throw new Error(data.message || "result=" + data.result);
+        }
+    } catch (err) {
+        console.error("Ошибка отправки формы:", err);
+        btn.disabled = false;
+        status.textContent = "Ошибка отправки. Попробуйте ещё раз.";
+        status.className = "text-sm font-medium text-[#ffb4ab] min-h-5";
+        return;
+    }
     form.reset();
     btn.disabled = false;
     // Close lead modal if open
